@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Utab Phantom | Systems Architect</title>
+    <title>utaibb | Systems Architect</title>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2/tsparticles.engine.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-stars@2/tsparticles.preset.stars.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
@@ -14,7 +15,9 @@
             --soft-violet: #8a2be2;
             --glass-bg: rgba(16, 20, 35, 0.4);
             --glass-border: rgba(0, 240, 255, 0.2);
+            --glass-hover: rgba(0, 240, 255, 0.4);
             --text-main: #e0e0e0;
+            --sidebar-width: 250px;
         }
 
         body, html {
@@ -26,6 +29,7 @@
             scroll-behavior: smooth;
         }
 
+        /* Particle Background */
         #tsparticles {
             position: fixed; top: 0; left: 0;
             width: 100%; height: 100%;
@@ -33,192 +37,323 @@
             animation: bootUp 2s ease-in forwards 0.5s;
         }
 
-        /* Hero Section */
-        .hero {
-            height: 100vh; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center;
+        /* --- SIDEBAR NAVIGATION --- */
+        .sidebar {
+            position: fixed; top: 0; left: 0;
+            width: var(--sidebar-width); height: 100vh;
+            background: rgba(5, 5, 10, 0.85);
+            border-right: 1px solid var(--glass-border);
+            backdrop-filter: blur(15px);
+            display: flex; flex-direction: column;
+            padding-top: 40px; z-index: 100;
+            transition: transform 0.3s ease;
         }
 
-        .name-title { font-size: 1.2rem; color: #888; letter-spacing: 3px; }
+        .nav-logo {
+            text-align: center; color: var(--neon-blue);
+            font-size: 1.5rem; font-weight: bold;
+            margin-bottom: 50px; text-shadow: 0 0 10px var(--neon-blue);
+            letter-spacing: 2px;
+        }
+
+        .nav-link {
+            padding: 20px 30px; color: #888;
+            text-decoration: none; font-size: 1.1rem;
+            text-transform: uppercase; letter-spacing: 2px;
+            transition: 0.3s; display: flex; align-items: center; gap: 15px;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--neon-blue);
+            background: rgba(0, 240, 255, 0.05);
+            border-left: 3px solid var(--neon-blue);
+            text-shadow: 0 0 8px var(--neon-blue);
+        }
+
+        /* Mobile Hamburger */
+        .mobile-menu-btn {
+            display: none; position: fixed; top: 20px; right: 20px;
+            background: var(--glass-bg); border: 1px solid var(--neon-blue);
+            color: var(--neon-blue); padding: 10px 15px;
+            border-radius: 5px; z-index: 1000; cursor: pointer;
+        }
+
+        /* --- MAIN CONTENT AREA --- */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 0;
+            transition: margin-left 0.3s ease;
+        }
+
+        .section {
+            min-height: 100vh; padding: 100px 40px;
+            display: flex; flex-direction: column; justify-content: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .section-title {
+            font-size: 2.5rem; color: var(--neon-blue);
+            border-bottom: 1px solid var(--glass-border); padding-bottom: 10px;
+            margin-bottom: 50px; text-transform: uppercase; 
+            text-shadow: 0 0 5px var(--neon-blue); display: inline-block;
+        }
+
+        /* --- OVERVIEW (HERO) --- */
+        .hero-section { text-align: center; align-items: center; }
+        .name-title { font-size: 1.2rem; color: #888; letter-spacing: 4px; margin-bottom: 10px; }
         .alias-title {
-            font-size: 4rem; color: var(--neon-blue);
+            font-size: 5rem; color: var(--neon-blue);
             text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--soft-violet);
-            margin: 10px 0; border-right: 2px solid var(--neon-blue);
+            margin: 0; border-right: 3px solid var(--neon-blue);
             white-space: nowrap; overflow: hidden; width: 0;
+            display: inline-block;
         }
         .role-text {
-            font-size: 1.2rem; background: var(--glass-bg); padding: 10px 20px;
+            font-size: 1.2rem; background: var(--glass-bg); padding: 10px 25px;
             border: 1px solid var(--glass-border); border-radius: 4px;
-            backdrop-filter: blur(10px); margin-top: 20px;
+            backdrop-filter: blur(10px); margin-top: 30px; display: inline-block;
         }
 
-        /* Scroll Indicator */
-        .scroll-down {
-            position: absolute; bottom: 40px;
-            color: var(--neon-blue); font-size: 0.9rem;
-            animation: bounce 2s infinite; letter-spacing: 2px;
+        /* --- SHOWCASE (VIDEOS) --- */
+        .video-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px;
+        }
+        .video-card {
+            background: var(--glass-bg); padding: 15px; border-radius: 8px;
+            border: 1px solid var(--glass-border); transition: 0.3s;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        .video-card:hover {
+            border-color: var(--neon-blue); box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+            transform: translateY(-5px);
+        }
+        .video-wrapper {
+            position: relative; padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0; overflow: hidden; border-radius: 4px;
+        }
+        .video-wrapper iframe {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
         }
 
-        /* Container Sections */
-        .section {
-            padding: 100px 20px; max-width: 1000px; margin: 0 auto;
-        }
-        .section-title {
-            font-size: 2rem; color: var(--neon-blue);
-            border-bottom: 1px solid var(--glass-border); padding-bottom: 10px;
-            margin-bottom: 40px; text-transform: uppercase; text-shadow: 0 0 5px var(--neon-blue);
-        }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;
-        }
-        .stat-card {
-            background: var(--glass-bg); border: 1px solid var(--glass-border);
-            padding: 30px; text-align: center; border-radius: 8px;
-            backdrop-filter: blur(5px); transition: 0.3s;
-        }
-        .stat-card:hover { border-color: var(--neon-blue); box-shadow: 0 0 15px rgba(0, 240, 255, 0.2); }
-        .stat-num { font-size: 3rem; color: var(--soft-violet); font-weight: bold; }
-
-        /* Expertise Cards */
-        .expertise-grid {
+        /* --- REVIEWS (TESTIMONIALS) --- */
+        .reviews-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;
         }
-        .expertise-card {
-            background: rgba(10, 15, 25, 0.7); border-left: 4px solid var(--neon-blue);
-            padding: 25px; border-radius: 0 8px 8px 0; transition: 0.3s; cursor: crosshair;
+        .review-card {
+            background: linear-gradient(145deg, rgba(16,20,35,0.8) 0%, rgba(10,12,20,0.9) 100%);
+            border-left: 4px solid var(--soft-violet);
+            padding: 30px; border-radius: 0 8px 8px 0; transition: 0.3s;
+            position: relative; overflow: hidden;
         }
-        .expertise-card:hover {
-            transform: translateX(10px); background: rgba(20, 30, 50, 0.8);
-            box-shadow: -5px 0 15px rgba(0, 240, 255, 0.3);
+        .review-card::before {
+            content: '\f10d'; font-family: 'FontAwesome'; position: absolute;
+            top: 20px; right: 20px; font-size: 3rem; color: rgba(255,255,255,0.03);
         }
-        .expertise-card h3 { color: #fff; margin-top: 0; }
+        .review-card:hover {
+            transform: translateX(10px); border-left-color: var(--neon-blue);
+            box-shadow: -5px 0 20px rgba(138, 43, 226, 0.2);
+        }
+        .stars { color: #ffd700; font-size: 1.2rem; margin-bottom: 15px; text-shadow: 0 0 5px rgba(255,215,0,0.5); }
+        .reviewer-name { font-size: 1.3rem; color: #fff; font-weight: bold; margin-bottom: 5px; }
+        .plugin-type { color: var(--neon-blue); font-size: 0.9rem; margin-bottom: 15px; letter-spacing: 1px; }
+        .review-text { font-style: italic; color: #bbb; line-height: 1.6; }
 
-        /* Action Panel */
-        .action-panel {
+        /* --- CONTACT (ACTION HUB) --- */
+        .contact-panel {
             background: var(--glass-bg); border: 1px solid var(--glass-border);
-            padding: 50px; text-align: center; border-radius: 8px; margin-top: 50px;
+            padding: 60px; text-align: center; border-radius: 12px;
+            backdrop-filter: blur(10px); max-width: 800px; margin: 0 auto;
         }
+        .contact-panel h2 { color: #fff; margin-top: 0; font-size: 2rem; letter-spacing: 2px; }
+        .contact-panel p { font-size: 1.2rem; color: #aaa; margin-bottom: 40px; }
+        
+        .btn-group { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
         .btn {
-            display: inline-block; padding: 15px 30px; margin: 10px;
+            display: flex; align-items: center; gap: 10px; padding: 15px 35px;
             font-size: 1.1rem; color: #fff; text-decoration: none;
             border: 1px solid var(--neon-blue); border-radius: 4px;
-            background: rgba(0, 240, 255, 0.1); transition: 0.3s;
-            text-transform: uppercase; letter-spacing: 1px;
+            background: rgba(0, 240, 255, 0.05); transition: 0.3s;
+            text-transform: uppercase; letter-spacing: 1px; font-weight: bold;
         }
         .btn:hover { background: var(--neon-blue); color: #000; box-shadow: 0 0 20px var(--neon-blue); }
-        .btn-violet { border-color: var(--soft-violet); background: rgba(138, 43, 226, 0.1); }
-        .btn-violet:hover { background: var(--soft-violet); color: #fff; box-shadow: 0 0 20px var(--soft-violet); }
+        
+        .btn-kofi { border-color: #ff5e5b; background: rgba(255, 94, 91, 0.05); }
+        .btn-kofi:hover { background: #ff5e5b; color: #fff; box-shadow: 0 0 20px #ff5e5b; }
+        
+        .btn-paypal { border-color: #00457c; background: rgba(0, 69, 124, 0.1); }
+        .btn-paypal:hover { background: #0079c1; color: #fff; box-shadow: 0 0 20px #0079c1; }
 
+        /* Animations */
         @keyframes bootUp { to { opacity: 1; background-color: var(--space-black); } }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
         @keyframes blink { 50% { border-color: transparent; } }
         .blinking { animation: blink 0.8s infinite; }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.active { transform: translateX(0); }
+            .main-content { margin-left: 0; }
+            .mobile-menu-btn { display: block; }
+            .alias-title { font-size: 3rem; }
+            .section { padding: 80px 20px; }
+        }
     </style>
 </head>
 <body>
 
     <div id="tsparticles"></div>
 
-    <div class="hero">
-        <div class="name-title">SYSTEM ARCHITECT: MUHAMMAD UTAIB</div>
-        <div class="alias-title blinking" id="alias"></div>
-        <div class="role-text" id="roleText">Initializing Protocols...</div>
-        <div class="scroll-down">▼ SYSTEM ACCESS ▼</div>
-    </div>
+    <button class="mobile-menu-btn" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i> COMMAND
+    </button>
 
-    <div class="section">
-        <h2 class="section-title">System Telemetry</h2>
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-num" data-target="50">0</div>
-                <div>Plugins Engineered</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-num" data-target="15">0</div>
-                <div>Server Networks</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-num" data-target="100">0</div>
-                <div>System Uptime %</div>
-            </div>
-        </div>
-    </div>
+    <nav class="sidebar" id="sidebar">
+        <div class="nav-logo">SYSTEM_HUD</div>
+        <a href="#overview" class="nav-link active"><i class="fas fa-microchip"></i> Overview</a>
+        <a href="#showcase" class="nav-link"><i class="fas fa-play-circle"></i> Showcase</a>
+        <a href="#reviews" class="nav-link"><i class="fas fa-satellite-dish"></i> Signal Logs</a>
+        <a href="#contact" class="nav-link"><i class="fas fa-terminal"></i> Connect</a>
+    </nav>
 
-    <div class="section">
-        <h2 class="section-title">Core Competencies</h2>
-        <div class="expertise-grid">
-            <div class="expertise-card">
-                <h3>Java / Spigot Architecture</h3>
-                <p>Custom server mechanics, API integrations, and robust plugin development optimized for high player counts.</p>
-            </div>
-            <div class="expertise-card">
-                <h3>Discord Automation</h3>
-                <p>Advanced Node.js bots linking game servers to Discord hubs for seamless community management and sync.</p>
-            </div>
-            <div class="expertise-card">
-                <h3>Infrastructure Optimization</h3>
-                <p>Debugging, memory leak patching, and TPS stabilization for large-scale Minecraft deployments.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="section">
-        <div class="action-panel">
-            <h2 style="color: #fff; margin-top: 0;">INITIATE SECURE COMMUNICATON</h2>
-            <p>Ready to deploy custom infrastructure for your server? Open a ticket in the command center.</p>
+    <div class="main-content">
+        
+        <section id="overview" class="section hero-section">
+            <div class="name-title">SYSTEM ARCHITECT: MUHAMMAD UTAIB</div>
+            <div class="alias-title blinking" id="alias"></div>
             <br>
-            <a href="YOUR_DISCORD_INVITE_LINK_HERE" class="btn">Connect via Discord</a>
-            <a href="YOUR_KOFI_LINK_HERE" class="btn btn-violet">Support on Ko-fi</a>
-            <a href="YOUR_PAYPAL_LINK_HERE" class="btn btn-violet">PayPal</a>
-        </div>
+            <div class="role-text" id="roleText">Initializing Protocols...</div>
+        </section>
+
+        <section id="showcase" class="section">
+            <h2 class="section-title">Operational Showcase</h2>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/0g9e9r9BJJs" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3 style="color: #fff; margin: 15px 0 5px 0;">Zodiac/Oni SMP Plugin</h3>
+                    <p style="color: #888; font-size: 0.9rem; margin: 0;">Infrastructure demonstration.</p>
+                </div>
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/LIi7xVHL-ck" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3 style="color: #fff; margin: 15px 0 5px 0;">Custom Plugin Architecture</h3>
+                    <p style="color: #888; font-size: 0.9rem; margin: 0;">System mechanics in action.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="reviews" class="section">
+            <h2 class="section-title">Verified Transmissions</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="reviewer-name">Eternityfx</div>
+                    <div class="plugin-type">MODULE: Simple Script Plugin</div>
+                    <div class="review-text">"Works perfectly. One of the most reliable developers I’ve worked with — highly recommended. 110%."</div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="reviewer-name">s_1ntaz</div>
+                    <div class="plugin-type">MODULE: Textures</div>
+                    <div class="review-text">"Very fast delivery and highly affordable. Great experience overall."</div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="reviewer-name">Kxnot</div>
+                    <div class="plugin-type">MODULE: Discord Bot</div>
+                    <div class="review-text">"Amazing, super kind, trustworthy, and highly skilled. Amazing work in general!"</div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="reviewer-name">Kalu</div>
+                    <div class="plugin-type">MODULE: Custom Plugin</div>
+                    <div class="review-text">"Couldn’t have asked for a better developer!"</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="contact-panel">
+                <h2>INITIATE COMMUNICATION</h2>
+                <p>Ready to deploy scalable infrastructure for your network? Access the secure command hub below to begin architecture planning.</p>
+                <div class="btn-group">
+                    <a href="https://discord.gg/qrSC7xaZrZ" target="_blank" class="btn">
+                        <i class="fab fa-discord"></i> Discord Hub
+                    </a>
+                    <a href="https://ko-fi.com/phantomxdz/goal?g=0" target="_blank" class="btn btn-kofi">
+                        <i class="fas fa-coffee"></i> Support on Ko-fi
+                    </a>
+                    <a href="https://www.paypal.me/ShamsulHuda68" target="_blank" class="btn btn-paypal">
+                        <i class="fab fa-paypal"></i> PayPal
+                    </a>
+                </div>
+            </div>
+        </section>
+
     </div>
 
     <script>
-        // 1. Cosmic Background
+        // 1. Cosmic Background Initialization
         loadStarsPreset(tsParticles);
         tsParticles.load("tsparticles", {
             preset: "stars",
             background: { color: "transparent" },
-            particles: { color: { value: ["#ffffff", "#00f0ff", "#8a2be2"] }, size: { value: { min: 0.5, max: 2 } }, move: { enable: true, speed: 0.3 } }
+            particles: { 
+                color: { value: ["#ffffff", "#00f0ff", "#8a2be2"] }, 
+                size: { value: { min: 0.5, max: 2 } }, 
+                move: { enable: true, speed: 0.4 } 
+            }
         });
 
-        // 2. Typing Animation
+        // 2. Typing Animation Logic
         const aliasElement = document.getElementById('alias');
         const roleElement = document.getElementById('roleText');
-        const aliasText = "UTAB PHANTOM";
+        const aliasText = "utaibb";
         let i = 0;
 
         function typeWriter() {
             if (i < aliasText.length) {
                 aliasElement.innerHTML += aliasText.charAt(i);
-                aliasElement.style.width = 'auto'; i++;
-                setTimeout(typeWriter, 120);
+                aliasElement.style.width = 'auto'; 
+                i++;
+                setTimeout(typeWriter, 150);
             } else {
-                roleElement.innerHTML = "SYSTEMS ONLINE";
+                roleElement.innerHTML = "SYSTEMS ONLINE. ALL PROTOCOLS NOMINAL.";
                 roleElement.style.color = "#00f0ff";
+                roleElement.style.borderColor = "#00f0ff";
+                roleElement.style.boxShadow = "0 0 15px rgba(0, 240, 255, 0.3)";
             }
         }
-        setTimeout(typeWriter, 2000);
+        setTimeout(typeWriter, 1500);
 
-        // 3. Counter Animation on Scroll
-        const counters = document.querySelectorAll('.stat-num');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const target = +entry.target.getAttribute('data-target');
-                    let count = 0;
-                    const updateCount = setInterval(() => {
-                        count += Math.ceil(target / 20);
-                        if(count >= target) { entry.target.innerText = target + (target === 100 ? '%' : '+'); clearInterval(updateCount); } 
-                        else { entry.target.innerText = count; }
-                    }, 50);
-                    observer.unobserve(entry.target);
+        // 3. Mobile Sidebar Toggle
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+
+        // 4. Highlight Active Sidebar Link on Scroll
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
                 }
             });
-        }, { threshold: 0.5 });
-        counters.forEach(counter => observer.observe(counter));
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
     </script>
 </body>
 </html>
