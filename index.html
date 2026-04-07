@@ -6,19 +6,23 @@
     
     <title>Utaib's Dev Studio | Systems Architect</title>
     <meta name="theme-color" content="#00f0ff">
+    
     <meta property="og:title" content="Utaib's Dev Studio">
     <meta property="og:site_name" content="Muhammad Utaib // Phantom">
-    <meta property="og:description" content="Systems Architect & Developer Studio. High-performance Minecraft plugins, Discord automation, and scalable digital infrastructure.">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:description" content="Plugins • Bots • And More">
+    <meta property="og:image" content="https://muhammadutaib.github.io/utaib/preview.png">
+    
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Utaib's Dev Studio">
-    <meta name="twitter:description" content="Systems Architect & Developer Studio. Custom digital infrastructure.">
+    <meta name="twitter:description" content="Plugins • Bots • And More">
+    <meta name="twitter:image" content="https://muhammadutaib.github.io/utaib/preview.png">
 
     <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2/tsparticles.engine.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-stars@2/tsparticles.preset.stars.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- THEME VARIABLES --- */
+        /* --- THEME ENGINE VARIABLES --- */
         :root {
             /* 1. DARK THEME (Default) */
             --bg-main: #030305;
@@ -61,17 +65,47 @@
             --text-bold: #ffffff;
             --glass-bg: rgba(40, 10, 60, 0.5);
             --glass-border: rgba(255, 0, 255, 0.25);
-            --neon-blue: #00f0ff; /* Keeps Phantom Cyan */
-            --neon-glow: rgba(255, 0, 255, 0.4); /* Magenta glow instead of cyan */
-            --soft-violet: #ff00ff; /* Bright magical magenta */
+            --neon-blue: #00f0ff;
+            --neon-glow: rgba(255, 0, 255, 0.4);
+            --soft-violet: #ff00ff; 
             --card-bg: rgba(25, 5, 45, 0.8);
             --particle-invert: 0; 
         }
-        
-        /* Magical Theme Particle Hue Shift */
-        [data-theme="magic"] #tsparticles {
-            filter: hue-rotate(280deg) saturate(200%) brightness(1.2);
+        [data-theme="magic"] #tsparticles { filter: hue-rotate(280deg) saturate(200%) brightness(1.2); }
+
+        [data-theme="neon"] {
+            /* 4. NEON GREEN THEME */
+            --bg-main: #010a01;
+            --sidebar-bg: rgba(1, 10, 1, 0.95);
+            --text-main: #d4ffd4;
+            --text-muted: #6b996b;
+            --text-bold: #ffffff;
+            --glass-bg: rgba(10, 30, 10, 0.6);
+            --glass-border: rgba(57, 255, 20, 0.25);
+            --neon-blue: #39ff14; 
+            --neon-glow: rgba(57, 255, 20, 0.4);
+            --soft-violet: #00ffcc; 
+            --card-bg: rgba(5, 20, 5, 0.8);
+            --particle-invert: 0; 
         }
+        [data-theme="neon"] #tsparticles { filter: hue-rotate(100deg) saturate(250%) brightness(1.1); }
+
+        [data-theme="cyan"] {
+            /* 5. CYAN GLOW THEME */
+            --bg-main: #000b14;
+            --sidebar-bg: rgba(0, 11, 20, 0.95);
+            --text-main: #e0f7fa;
+            --text-muted: #80c0d0;
+            --text-bold: #ffffff;
+            --glass-bg: rgba(0, 30, 50, 0.6);
+            --glass-border: rgba(0, 255, 255, 0.3);
+            --neon-blue: #00ffff; 
+            --neon-glow: rgba(0, 255, 255, 0.5);
+            --soft-violet: #00aaff; 
+            --card-bg: rgba(0, 20, 40, 0.8);
+            --particle-invert: 0; 
+        }
+        [data-theme="cyan"] #tsparticles { filter: hue-rotate(180deg) saturate(300%) brightness(1.5); }
 
         body, html {
             margin: 0; padding: 0;
@@ -95,6 +129,7 @@
             text-shadow: 0 0 20px var(--neon-glow);
             opacity: 0; animation: bootPulse 1.2s forwards 0.2s ease-in-out;
             font-weight: bold; text-align: center;
+            transition: color 0.5s ease, text-shadow 0.5s ease;
         }
         @keyframes bootPulse { 
             0% { opacity: 0; transform: scale(0.95); filter: blur(4px); } 
@@ -201,7 +236,7 @@
             letter-spacing: -1px; line-height: 1.1; text-shadow: 0 5px 20px rgba(0,0,0,0.3);
         }
         
-        /* The Phantom Signature (Restored to Cyan) */
+        /* The Phantom Signature */
         .hero-alias { 
             font-size: 3.2rem; font-style: italic; font-weight: normal;
             margin-bottom: 30px; letter-spacing: 3px;
@@ -220,7 +255,7 @@
             font-size: 1.6rem; color: var(--text-main);
             height: 40px; display: flex; align-items: center; margin-bottom: 40px;
         }
-        /* Dynamic Text (Restored to Purple) */
+        /* Dynamic Text */
         .dynamic-text { color: var(--soft-violet); font-weight: bold; margin-left: 12px; transition: color 0.5s ease; }
         .cursor { color: var(--text-muted); animation: blink 0.8s infinite; margin-left: 2px; }
         
@@ -327,7 +362,7 @@
     <div id="tsparticles"></div>
 
     <div class="top-controls">
-        <button class="control-btn" id="themeToggle" title="Toggle Theme">
+        <button class="control-btn" id="themeToggle" title="Cycle Theme">
             <i class="fas fa-sun"></i>
         </button>
         <button class="control-btn mobile-menu-btn" onclick="toggleSidebar()">
@@ -473,32 +508,36 @@
     </div>
 
     <script>
-        // --- 1. 3-WAY THEME ENGINE (Dark -> Light -> Magic) ---
+        // --- 1. 5-WAY THEME ENGINE (Dark -> Light -> Magic -> Neon -> Cyan) ---
         const themeToggleBtn = document.getElementById('themeToggle');
         const themeIcon = themeToggleBtn.querySelector('i');
         
         let currentTheme = 'dark';
         
-        // Auto-detect system preference initially
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
             currentTheme = 'light';
             document.documentElement.setAttribute('data-theme', 'light');
-            themeIcon.className = 'fas fa-wand-magic-sparkles'; // Next is Magic
+            themeIcon.className = 'fas fa-wand-magic-sparkles'; 
         }
 
         themeToggleBtn.addEventListener('click', () => {
             if (currentTheme === 'dark') {
-                // Switch to Light
                 currentTheme = 'light';
                 document.documentElement.setAttribute('data-theme', 'light');
                 themeIcon.className = 'fas fa-wand-magic-sparkles';
             } else if (currentTheme === 'light') {
-                // Switch to Magic
                 currentTheme = 'magic';
                 document.documentElement.setAttribute('data-theme', 'magic');
-                themeIcon.className = 'fas fa-moon';
+                themeIcon.className = 'fas fa-bolt'; 
+            } else if (currentTheme === 'magic') {
+                currentTheme = 'neon';
+                document.documentElement.setAttribute('data-theme', 'neon');
+                themeIcon.className = 'fas fa-snowflake'; 
+            } else if (currentTheme === 'neon') {
+                currentTheme = 'cyan';
+                document.documentElement.setAttribute('data-theme', 'cyan');
+                themeIcon.className = 'fas fa-moon'; 
             } else {
-                // Switch back to Dark
                 currentTheme = 'dark';
                 document.documentElement.removeAttribute('data-theme');
                 themeIcon.className = 'fas fa-sun';
