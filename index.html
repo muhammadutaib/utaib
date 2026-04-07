@@ -1,17 +1,224 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Utaib Phantom Command Center</title>
-    <meta property="og:image" content="https://bolt.new/static/og_default.png" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://bolt.new/static/og_default.png" />
-    <script type="module" crossorigin src="/assets/index-CthwGB5c.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-bi6SV0nG.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utab Phantom | Systems Architect</title>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2/tsparticles.engine.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-stars@2/tsparticles.preset.stars.min.js"></script>
+
+    <style>
+        :root {
+            --space-black: #05050a;
+            --neon-blue: #00f0ff;
+            --soft-violet: #8a2be2;
+            --glass-bg: rgba(16, 20, 35, 0.4);
+            --glass-border: rgba(0, 240, 255, 0.2);
+            --text-main: #e0e0e0;
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            background-color: #000;
+            color: var(--text-main);
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        #tsparticles {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1; opacity: 0;
+            animation: bootUp 2s ease-in forwards 0.5s;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+        }
+
+        .name-title { font-size: 1.2rem; color: #888; letter-spacing: 3px; }
+        .alias-title {
+            font-size: 4rem; color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--soft-violet);
+            margin: 10px 0; border-right: 2px solid var(--neon-blue);
+            white-space: nowrap; overflow: hidden; width: 0;
+        }
+        .role-text {
+            font-size: 1.2rem; background: var(--glass-bg); padding: 10px 20px;
+            border: 1px solid var(--glass-border); border-radius: 4px;
+            backdrop-filter: blur(10px); margin-top: 20px;
+        }
+
+        /* Scroll Indicator */
+        .scroll-down {
+            position: absolute; bottom: 40px;
+            color: var(--neon-blue); font-size: 0.9rem;
+            animation: bounce 2s infinite; letter-spacing: 2px;
+        }
+
+        /* Container Sections */
+        .section {
+            padding: 100px 20px; max-width: 1000px; margin: 0 auto;
+        }
+        .section-title {
+            font-size: 2rem; color: var(--neon-blue);
+            border-bottom: 1px solid var(--glass-border); padding-bottom: 10px;
+            margin-bottom: 40px; text-transform: uppercase; text-shadow: 0 0 5px var(--neon-blue);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;
+        }
+        .stat-card {
+            background: var(--glass-bg); border: 1px solid var(--glass-border);
+            padding: 30px; text-align: center; border-radius: 8px;
+            backdrop-filter: blur(5px); transition: 0.3s;
+        }
+        .stat-card:hover { border-color: var(--neon-blue); box-shadow: 0 0 15px rgba(0, 240, 255, 0.2); }
+        .stat-num { font-size: 3rem; color: var(--soft-violet); font-weight: bold; }
+
+        /* Expertise Cards */
+        .expertise-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;
+        }
+        .expertise-card {
+            background: rgba(10, 15, 25, 0.7); border-left: 4px solid var(--neon-blue);
+            padding: 25px; border-radius: 0 8px 8px 0; transition: 0.3s; cursor: crosshair;
+        }
+        .expertise-card:hover {
+            transform: translateX(10px); background: rgba(20, 30, 50, 0.8);
+            box-shadow: -5px 0 15px rgba(0, 240, 255, 0.3);
+        }
+        .expertise-card h3 { color: #fff; margin-top: 0; }
+
+        /* Action Panel */
+        .action-panel {
+            background: var(--glass-bg); border: 1px solid var(--glass-border);
+            padding: 50px; text-align: center; border-radius: 8px; margin-top: 50px;
+        }
+        .btn {
+            display: inline-block; padding: 15px 30px; margin: 10px;
+            font-size: 1.1rem; color: #fff; text-decoration: none;
+            border: 1px solid var(--neon-blue); border-radius: 4px;
+            background: rgba(0, 240, 255, 0.1); transition: 0.3s;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .btn:hover { background: var(--neon-blue); color: #000; box-shadow: 0 0 20px var(--neon-blue); }
+        .btn-violet { border-color: var(--soft-violet); background: rgba(138, 43, 226, 0.1); }
+        .btn-violet:hover { background: var(--soft-violet); color: #fff; box-shadow: 0 0 20px var(--soft-violet); }
+
+        @keyframes bootUp { to { opacity: 1; background-color: var(--space-black); } }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
+        @keyframes blink { 50% { border-color: transparent; } }
+        .blinking { animation: blink 0.8s infinite; }
+    </style>
+</head>
+<body>
+
+    <div id="tsparticles"></div>
+
+    <div class="hero">
+        <div class="name-title">SYSTEM ARCHITECT: MUHAMMAD UTAIB</div>
+        <div class="alias-title blinking" id="alias"></div>
+        <div class="role-text" id="roleText">Initializing Protocols...</div>
+        <div class="scroll-down">▼ SYSTEM ACCESS ▼</div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">System Telemetry</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-num" data-target="50">0</div>
+                <div>Plugins Engineered</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num" data-target="15">0</div>
+                <div>Server Networks</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num" data-target="100">0</div>
+                <div>System Uptime %</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Core Competencies</h2>
+        <div class="expertise-grid">
+            <div class="expertise-card">
+                <h3>Java / Spigot Architecture</h3>
+                <p>Custom server mechanics, API integrations, and robust plugin development optimized for high player counts.</p>
+            </div>
+            <div class="expertise-card">
+                <h3>Discord Automation</h3>
+                <p>Advanced Node.js bots linking game servers to Discord hubs for seamless community management and sync.</p>
+            </div>
+            <div class="expertise-card">
+                <h3>Infrastructure Optimization</h3>
+                <p>Debugging, memory leak patching, and TPS stabilization for large-scale Minecraft deployments.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="action-panel">
+            <h2 style="color: #fff; margin-top: 0;">INITIATE SECURE COMMUNICATON</h2>
+            <p>Ready to deploy custom infrastructure for your server? Open a ticket in the command center.</p>
+            <br>
+            <a href="YOUR_DISCORD_INVITE_LINK_HERE" class="btn">Connect via Discord</a>
+            <a href="YOUR_KOFI_LINK_HERE" class="btn btn-violet">Support on Ko-fi</a>
+            <a href="YOUR_PAYPAL_LINK_HERE" class="btn btn-violet">PayPal</a>
+        </div>
+    </div>
+
+    <script>
+        // 1. Cosmic Background
+        loadStarsPreset(tsParticles);
+        tsParticles.load("tsparticles", {
+            preset: "stars",
+            background: { color: "transparent" },
+            particles: { color: { value: ["#ffffff", "#00f0ff", "#8a2be2"] }, size: { value: { min: 0.5, max: 2 } }, move: { enable: true, speed: 0.3 } }
+        });
+
+        // 2. Typing Animation
+        const aliasElement = document.getElementById('alias');
+        const roleElement = document.getElementById('roleText');
+        const aliasText = "UTAB PHANTOM";
+        let i = 0;
+
+        function typeWriter() {
+            if (i < aliasText.length) {
+                aliasElement.innerHTML += aliasText.charAt(i);
+                aliasElement.style.width = 'auto'; i++;
+                setTimeout(typeWriter, 120);
+            } else {
+                roleElement.innerHTML = "SYSTEMS ONLINE";
+                roleElement.style.color = "#00f0ff";
+            }
+        }
+        setTimeout(typeWriter, 2000);
+
+        // 3. Counter Animation on Scroll
+        const counters = document.querySelectorAll('.stat-num');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = +entry.target.getAttribute('data-target');
+                    let count = 0;
+                    const updateCount = setInterval(() => {
+                        count += Math.ceil(target / 20);
+                        if(count >= target) { entry.target.innerText = target + (target === 100 ? '%' : '+'); clearInterval(updateCount); } 
+                        else { entry.target.innerText = count; }
+                    }, 50);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        counters.forEach(counter => observer.observe(counter));
+    </script>
+</body>
 </html>
