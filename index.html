@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>utaibb | Systems Architect</title>
+    
+    <title>Utaib's Dev Studio | Systems Architect</title>
+    <meta name="theme-color" content="#00f0ff">
+    <meta property="og:title" content="Utaib's Dev Studio">
+    <meta property="og:site_name" content="Muhammad Utaib // Phantom">
+    <meta property="og:description" content="Systems Architect & Developer Studio. High-performance Minecraft plugins, Discord automation, and scalable digital infrastructure.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Utaib's Dev Studio">
+    <meta name="twitter:description" content="Systems Architect & Developer Studio. Custom digital infrastructure.">
+
     <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2/tsparticles.engine.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-stars@2/tsparticles.preset.stars.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -51,7 +60,7 @@
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
-        /* --- BOOT SEQUENCE --- */
+        /* --- STUDIO BOOT SEQUENCE --- */
         #boot-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: var(--bg-main); z-index: 9999;
@@ -59,14 +68,15 @@
             transition: opacity 0.5s ease-out;
         }
         .boot-title {
-            color: var(--neon-blue); font-size: 2rem; letter-spacing: 6px;
-            text-shadow: 0 0 15px var(--neon-glow);
-            opacity: 0; animation: bootPulse 1s forwards 0.2s ease-in-out;
+            color: var(--neon-blue); font-size: 2.2rem; letter-spacing: 4px;
+            text-shadow: 0 0 20px var(--neon-glow);
+            opacity: 0; animation: bootPulse 1.2s forwards 0.2s ease-in-out;
+            font-weight: bold;
         }
         @keyframes bootPulse { 
-            0% { opacity: 0; transform: scale(0.95); } 
-            50% { opacity: 1; transform: scale(1.02); }
-            100% { opacity: 1; transform: scale(1); } 
+            0% { opacity: 0; transform: scale(0.95); filter: blur(4px); } 
+            50% { opacity: 1; transform: scale(1.02); filter: blur(0px); }
+            100% { opacity: 1; transform: scale(1); filter: blur(0px); } 
         }
 
         /* --- PARTICLES --- */
@@ -76,10 +86,10 @@
             z-index: -1;
             filter: invert(var(--particle-invert));
             transition: filter 0.4s ease, transform 2s ease-out;
-            transform: scale(1.1); /* Starts slightly zoomed for energy effect */
+            transform: scale(1.1);
         }
         #tsparticles.stabilized {
-            transform: scale(1); /* Settles back down after boot */
+            transform: scale(1);
         }
 
         /* --- TOP CONTROLS --- */
@@ -96,7 +106,7 @@
         .control-btn:hover { box-shadow: 0 0 10px var(--neon-glow); transform: scale(1.05); }
         .mobile-menu-btn { display: none; }
 
-        /* --- SIDEBAR --- */
+        /* --- SIDEBAR (UTILITIES) --- */
         .sidebar {
             position: fixed; top: 0; left: 0;
             width: var(--sidebar-width); height: 100vh;
@@ -109,9 +119,9 @@
         }
         .nav-logo {
             text-align: center; color: var(--neon-blue);
-            font-size: 1.5rem; font-weight: bold;
+            font-size: 1.2rem; font-weight: bold;
             margin-bottom: 50px; text-shadow: 0 0 8px var(--neon-glow);
-            letter-spacing: 3px;
+            letter-spacing: 5px; opacity: 0.8;
         }
         .nav-link {
             padding: 20px 30px; color: var(--text-muted);
@@ -126,7 +136,7 @@
             text-shadow: 0 0 5px var(--neon-glow);
         }
 
-        /* --- MAIN CONTENT & SECTIONS --- */
+        /* --- MAIN CONTENT --- */
         .main-content {
             margin-left: var(--sidebar-width);
             padding: 0; transition: margin-left 0.4s ease;
@@ -148,7 +158,7 @@
             text-shadow: 0 0 5px var(--neon-glow); display: inline-block;
         }
 
-        /* --- HERO: ULTIMATE CINEMATIC OVERHAUL --- */
+        /* --- HERO: DUAL IDENTITY OVERHAUL --- */
         .hero-section { align-items: flex-start; }
         .hero-wrapper {
             animation: float 6s ease-in-out infinite;
@@ -162,28 +172,30 @@
         }
         
         .hero-title { 
-            font-size: 4.5rem; color: var(--text-bold); margin: 0 0 10px 0; 
-            letter-spacing: -1px; line-height: 1.1;
+            font-size: 4.8rem; color: var(--text-bold); margin: 0 0 5px 0; 
+            letter-spacing: -1px; line-height: 1.1; text-shadow: 0 5px 20px rgba(0,0,0,0.5);
         }
         
-        /* The Light Sweep & Pulse Effect */
+        /* The Phantom Signature */
         .hero-alias { 
-            font-size: 3.8rem; font-weight: bold;
-            margin-bottom: 30px;
-            background: linear-gradient(90deg, var(--neon-blue) 0%, #ffffff 50%, var(--neon-blue) 100%);
-            background-size: 200% auto;
-            color: transparent;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 3s linear infinite, pulseText 2s ease-in-out infinite;
+            font-size: 3rem; font-style: italic; font-weight: normal;
+            margin-bottom: 30px; letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.7); /* Reduced Opacity */
+            text-shadow: 0 0 15px var(--soft-violet), 0 0 30px rgba(138, 43, 226, 0.3);
+            animation: pulseSignature 4s ease-in-out infinite;
+        }
+
+        @keyframes pulseSignature {
+            0%, 100% { opacity: 0.7; text-shadow: 0 0 15px var(--soft-violet); }
+            50% { opacity: 0.9; text-shadow: 0 0 25px var(--soft-violet), 0 0 40px rgba(138, 43, 226, 0.5); }
         }
 
         .rotating-text-wrapper {
             font-size: 1.6rem; color: var(--text-main);
             height: 40px; display: flex; align-items: center; margin-bottom: 40px;
         }
-        .dynamic-text { color: var(--soft-violet); font-weight: bold; margin-left: 12px; }
-        .cursor { color: var(--neon-blue); animation: blink 0.8s infinite; margin-left: 2px; }
+        .dynamic-text { color: var(--neon-blue); font-weight: bold; margin-left: 12px; }
+        .cursor { color: var(--text-muted); animation: blink 0.8s infinite; margin-left: 2px; }
         
         .hero-cta .btn { padding: 18px 45px; font-size: 1.2rem; box-shadow: 0 0 20px rgba(0,240,255,0.1); }
 
@@ -262,8 +274,6 @@
 
         /* --- KEYFRAMES --- */
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        @keyframes shine { to { background-position: 200% center; } }
-        @keyframes pulseText { 0%, 100% { filter: drop-shadow(0 0 10px var(--neon-glow)); } 50% { filter: drop-shadow(0 0 25px var(--neon-blue)); } }
         @keyframes blink { 50% { opacity: 0; } }
 
         /* --- RESPONSIVE --- */
@@ -273,7 +283,7 @@
             .main-content { margin-left: 0; }
             .mobile-menu-btn { display: block; }
             .hero-title { font-size: 2.8rem; }
-            .hero-alias { font-size: 2.5rem; }
+            .hero-alias { font-size: 2rem; }
             .rotating-text-wrapper { font-size: 1.2rem; flex-wrap: wrap; height: auto; margin-bottom: 30px;}
             .section { padding: 80px 25px; }
             .video-grid { grid-template-columns: 1fr; }
@@ -283,7 +293,7 @@
 <body>
 
     <div id="boot-screen">
-        <div class="boot-title">utaibb_SYSTEM</div>
+        <div class="boot-title">Utaib's Developer Studio</div>
     </div>
 
     <div id="tsparticles"></div>
@@ -298,7 +308,7 @@
     </div>
 
     <nav class="sidebar" id="sidebar">
-        <div class="nav-logo">utaibb</div>
+        <div class="nav-logo">UTILITIES</div>
         <a href="#overview" class="nav-link active"><i class="fas fa-terminal"></i> Core Info</a>
         <a href="#pricing" class="nav-link"><i class="fas fa-file-invoice-dollar"></i> Pricing</a>
         <a href="#showcase" class="nav-link"><i class="fas fa-play"></i> Visuals</a>
@@ -310,9 +320,9 @@
         
         <section id="overview" class="section hero-section">
             <div class="hero-wrapper">
-                <div class="hero-subtitle">System Architect</div>
+                <div class="hero-subtitle">System Architect // Dev Studio</div>
                 <h1 class="hero-title">MUHAMMAD UTAIB</h1>
-                <div class="hero-alias">utaibb</div>
+                <div class="hero-alias">Phantom</div>
                 
                 <div class="rotating-text-wrapper">
                     <span>Engineering</span>
@@ -341,7 +351,7 @@
             </div>
 
             <div class="about-panel">
-                <strong>ABOUT ME:</strong> I am a developer with over 7+ years of experience specializing in Minecraft plugins, Discord automation (including AI-integrated bots), and web systems. I focus on creating reliable, high-performance systems designed for real-world deployment. Whether you need a simple utility tool or a fully custom server infrastructure, I build solutions that are powerful, scalable, and easy to use for any community.
+                <strong>ABOUT THE STUDIO:</strong> I am a developer with over 7+ years of experience specializing in Minecraft plugins, Discord automation (including AI-integrated bots), and web systems. I focus on creating reliable, high-performance systems designed for real-world deployment. Whether you need a simple utility tool or a fully custom server infrastructure, I build solutions that are powerful, scalable, and easy to use for any community.
             </div>
         </section>
 
@@ -464,12 +474,12 @@
             bootScreen.style.opacity = '0';
             setTimeout(() => {
                 bootScreen.style.display = 'none';
-                mainUI.classList.add('loaded'); // Triggers the slide up and fade in
-                particlesContainer.classList.add('stabilized'); // Settles the energy burst
+                mainUI.classList.add('loaded');
+                particlesContainer.classList.add('stabilized');
                 initCounters();
                 typeRotate();
             }, 500);
-        }, 1000);
+        }, 1200);
 
         // --- 3. DYNAMIC ROTATING TEXT ---
         const rotText = document.getElementById('rotatingText');
