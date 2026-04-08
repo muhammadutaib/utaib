@@ -527,23 +527,21 @@ n_links[n].classList.add('active');
 }
 }
 });
-
-function goNums() {
-var nms = document.querySelectorAll('.stat-num');
-var obs = new IntersectionObserver(function(es) {
-for(var p=0; p<es.length; p++) {
-if (es[p].isIntersecting) {
-var t = +es[p].target.getAttribute('data-target');
-var c = 0;
-var timer = setInterval(function() {
-c += Math.ceil(t / 20);
-if(c >= t) { 
-es[p].target.innerText = t + (t == 100 ? '%' : '+'); 
-clearInterval(timer); 
-} else { 
-es[p].target.innerText = c; 
-}
-}, 50);
+      function goNums() {
+            let nms = document.querySelectorAll('.stat-num');
+            for(let q=0; q<nms.length; q++) {
+                let el = nms[q];
+                let t = +el.getAttribute('data-target');
+                let c = 0;
+                let tmr = setInterval(function() {
+                    c += Math.ceil(t / 20);
+                    if(c >= t) { 
+                        el.innerText = t + (t == 100 ? '%' : '+'); 
+                        clearInterval(tmr); 
+                    } else { 
+                        el.innerText = c; 
+                    }
+                }, 50);       
 obs.unobserve(es[p].target);
 }
 }
