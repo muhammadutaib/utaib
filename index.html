@@ -351,25 +351,25 @@ display: inline-flex; align-items: center; gap: 10px; padding: 15px 35px; color:
             
 <div class="reviews-container" id="reviewsContainer">
 <div class="reviews-grid">
-<div class="review-card" onclick="toggleReview(this)">
+<div class="review-card" onclick="clkReview(this)">
 <div class="stars">★★★★★</div>
 <div class="reviewer-name">Eternityfx</div>
 <div class="plugin-type">Simple Script Plugin</div>
 <div class="review-text">"Works perfect and is the most goated plugin dev ever, 110% recommended this person."</div>
 </div>
-<div class="review-card" onclick="toggleReview(this)">
+<div class="review-card" onclick="clkReview(this)">
 <div class="stars">★★★★★</div>
 <div class="reviewer-name">s_1ntaz</div>
 <div class="plugin-type">Textures</div>
 <div class="review-text">"Very fast and affordable. Great experience overall."</div>
 </div>
-<div class="review-card" onclick="toggleReview(this)">
+<div class="review-card" onclick="clkReview(this)">
 <div class="stars">★★★★★</div>
 <div class="reviewer-name">Kxnot</div>
 <div class="plugin-type">Discord Bot</div>
 <div class="review-text">"Amazing, super kind and trustworthy. Amazing in general!"</div>
 </div>
-<div class="review-card" onclick="toggleReview(this)">
+<div class="review-card" onclick="clkReview(this)">
 <div class="stars">★★★★★</div>
 <div class="reviewer-name">Kalu</div>
 <div class="plugin-type">Custom Plugin</div>
@@ -425,47 +425,48 @@ tIcon.className = 'fas fa-sun';
 });
 
 var l_scrn = document.getElementById('boot-screen');
-var ui_main = document.getElementById('mainUI');
-var prtcls = document.getElementById('tsparticles');
+let mUI = document.getElementById('mainUI');
+var bg_parts = document.getElementById('tsparticles');
         
 setTimeout(function(){
-l_scrn.style.opacity = '0';
+l_scrn.style.opacity = "0";
 setTimeout(function(){
 l_scrn.style.display = 'none';
-ui_main.classList.add('loaded');
-prtcls.classList.add('stabilized');
+mUI.classList.add('loaded');
+bg_parts.classList.add('stabilized');
 goNums();
-typeW();
+doTextStuff();
 }, 500);
 console.log("why does the loader trigger twice sometimes? check this later");
 }, 1200);
 
-var rTxt = document.getElementById('rotatingText');
-var wds = ["Minecraft Plugins", "Discord Bots", "Websites"];
-var widx = 0; 
-var cidx = 0; 
-var is_del = false;
+let txtArray = ["Minecraft Plugins", "Discord Bots", "Websites"];
+var w_idx = 0; 
+var c_idx = 0; 
+let delMode = false;
 
-function typeW() {
-var cw = wds[widx];
-if (is_del) {
-rTxt.innerText = cw.substring(0, cidx - 1);
-cidx--;
+function doTextStuff() {
+var cw = txtArray[w_idx];
+let r_text = document.getElementById('rotatingText');
+            
+if (delMode) {
+r_text.innerText = cw.substring(0, c_idx - 1);
+c_idx--;
 } else {
-rTxt.innerText = cw.substring(0, cidx + 1);
-cidx++;
+r_text.innerText = cw.substring(0, c_idx + 1);
+c_idx++;
 }
             
-var s = is_del ? 40 : 100;
-if (!is_del && cidx == cw.length) {
+let s = delMode ? 40 : 100;
+if (!delMode && c_idx == cw.length) {
 s = 2000; 
-is_del = true; 
-} else if (is_del && cidx == 0) {
-is_del = false; 
-widx = (widx + 1) % wds.length; 
+delMode = true; 
+} else if (delMode && c_idx == 0) {
+delMode = false; 
+w_idx = (w_idx + 1) % txtArray.length; 
 s = 500; 
 }
-setTimeout(typeW, s);
+setTimeout(doTextStuff, s);
 }
 
 loadStarsPreset(tsParticles);
@@ -478,77 +479,71 @@ function toggleSidebar() {
 document.getElementById('sidebar').classList.toggle('active');
 }
         
-let n_links = document.querySelectorAll('.nav-link');
-for (var i = 0; i < n_links.length; i++) {
-n_links[i].addEventListener('click', function() {
+let nlinks = document.querySelectorAll(".nav-link");
+for (var i = 0; i < nlinks.length; i++) {
+nlinks[i].addEventListener("click", function() {
 if (window.innerWidth <= 900) { 
 document.getElementById('sidebar').classList.remove('active'); 
 }
 });
 }
 
-var rev_box = document.getElementById('reviewsContainer');
-function toggleReview(el) {
-var exp = el.classList.contains('expanded');
-var cards = document.querySelectorAll('.review-card');
-for(var j=0; j<cards.length; j++) {
-cards[j].classList.remove('expanded');
+let r_cont = document.getElementById('reviewsContainer');
+function clkReview(elem) {
+let isX = elem.classList.contains('expanded');
+let cx = document.querySelectorAll('.review-card');
+for(var j = 0; j < cx.length; j++) {
+cx[j].classList.remove('expanded');
 }
-if (!exp) {
-el.classList.add('expanded');
-rev_box.classList.add('active-review-mode');
+if (!isX) {
+elem.classList.add('expanded');
+r_cont.classList.add('active-review-mode');
 } else {
-rev_box.classList.remove('active-review-mode');
+r_cont.classList.remove('active-review-mode');
 }
 }
         
-document.addEventListener('click', function(e) {
-if (!e.target.closest('.review-card') && rev_box.classList.contains('active-review-mode')) {
-var cs = document.querySelectorAll('.review-card');
-for(var k=0; k<cs.length; k++) {
-cs[k].classList.remove('expanded');
+document.addEventListener("click", function(e) {
+if (!e.target.closest('.review-card') && r_cont.classList.contains('active-review-mode')) {
+let cy = document.querySelectorAll('.review-card');
+for(var k = 0; k < cy.length; k++) {
+cy[k].classList.remove('expanded');
 }
-rev_box.classList.remove('active-review-mode');
+r_cont.classList.remove('active-review-mode');
 }
 });
 
-var secs = document.querySelectorAll('.section');
+let sList = document.querySelectorAll('.section');
 window.addEventListener('scroll', function() {
-var cur = "";
-for(var m=0; m<secs.length; m++) {
-if(scrollY >= secs[m].offsetTop - 300) { 
-cur = secs[m].getAttribute('id'); 
+var cId = "";
+for(var m = 0; m < sList.length; m++) {
+if(scrollY >= sList[m].offsetTop - 300) { 
+cId = sList[m].getAttribute('id'); 
 }
 }
-for(var n=0; n<n_links.length; n++) {
-n_links[n].classList.remove('active');
-if (n_links[n].getAttribute('href').includes(cur)) { 
-n_links[n].classList.add('active'); 
+for(var n = 0; n < nlinks.length; n++) {
+nlinks[n].classList.remove('active');
+if (nlinks[n].getAttribute('href').includes(cId)) { 
+nlinks[n].classList.add('active'); 
 }
 }
 });
-      function goNums() {
-            let nms = document.querySelectorAll('.stat-num');
-            for(let q=0; q<nms.length; q++) {
-                let el = nms[q];
-                let t = +el.getAttribute('data-target');
-                let c = 0;
-                let tmr = setInterval(function() {
-                    c += Math.ceil(t / 20);
-                    if(c >= t) { 
-                        el.innerText = t + (t == 100 ? '%' : '+'); 
-                        clearInterval(tmr); 
-                    } else { 
-                        el.innerText = c; 
-                    }
-                }, 50);       
-obs.unobserve(es[p].target);
+
+function goNums() {
+let nms = document.querySelectorAll('.stat-num');
+for(let q=0; q<nms.length; q++) {
+let el = nms[q];
+let t = +el.getAttribute('data-target');
+let c = 0;
+let tmr = setInterval(function() {
+c += Math.ceil(t / 20);
+if(c >= t) { 
+el.innerText = t + (t == 100 ? '%' : '+'); 
+clearInterval(tmr); 
+} else { 
+el.innerText = c; 
 }
-}
-}, { threshold: 0.5 });
-            
-for(var q=0; q<nms.length; q++) {
-obs.observe(nms[q]);
+}, 50);
 }
 }
 
