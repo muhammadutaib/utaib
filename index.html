@@ -1,152 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Utaib's Dev Studio </title>
-    <meta name="theme-color" content="#00f0ff">
-    
-    <meta property="og:title" content="Utaib's Dev Studio">
-    <meta property="og:site_name" content="Muhammad Utaib // Phantom">
-    <meta property="og:description" content="Plugins • Bots • And More">
-    <meta property="og:image" content="https://muhammadutaib.github.io/utaib/preview.png">
-    
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Utaib's Dev Studio">
-    <meta name="twitter:description" content="Plugins • Bots • And More">
-    <meta name="twitter:image" content="https://muhammadutaib.github.io/utaib/preview.png">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>Utaib's Dev Studio </title>
+<meta name="theme-color" content="#00f0ff">
+<meta property="og:title" content="Utaib's Dev Studio">
+<meta property="og:site_name" content="Muhammad Utaib // Phantom">
+<meta property="og:description" content="Plugins • Bots • And More">
+<meta property="og:image" content="https://muhammadutaib.github.io/utaib/preview.png">
+//teitter
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Utaib's Dev Studio">
+ <meta name="twitter:description" content="Plugins • Bots • And More">
+<meta name="twitter:image" content="https://muhammadutaib.github.io/utaib/preview.png">
     <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2/tsparticles.engine.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-stars@2/tsparticles.preset.stars.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+//////////
+<style>
+    :root {
+    --bg-main: #030305;
+--sidebar-bg: rgba(3, 3, 5, 0.9);
+--text-main: #e0e0e0;
+--text-muted: #888;
+ --text-bold: #fff;
+--glass-bg: rgba(10, 15, 25, 0.6);
+--glass-border: rgba(0, 240, 255, 0.15);
+--neon-blue: #00f0ff;
+--neon-glow: rgba(0, 240, 255, 0.3);
+--soft-violet: #8a2be2;
+--card-bg: rgba(15, 18, 25, 0.8);
+--particle-invert: 0;
+--sidebar-width: 260px;
+}
+[data-theme="light"] 
+{
+ --bg-main: #f0f2f5;
+--sidebar-bg: rgba(240, 242, 245, 0.95);
+--text-main: #333;
+--text-muted: #666;
+--text-bold: #111;
+--glass-bg: rgba(255, 255, 255, 0.8);
+--glass-border: rgba(0, 120, 255, 0.2);
+--neon-blue: #0066cc;
+ --neon-glow: rgba(0, 102, 204, 0.15);
+--soft-violet: #6a0dad;
+--card-bg: rgba(255, 255, 255, 0.9);
+--particle-invert: 1; 
+}
+[data-theme="magic"] {
+ --bg-main: #0a0212;
+    --sidebar-bg: rgba(10, 2, 18, 0.95);
+--text-main: #eaddff;--text-muted: #a48ebd;
+--text-bold: #ffffff;
+--glass-bg: rgba(40, 10, 60, 0.5);
+--glass-border: rgba(255, 0, 255, 0.25);
+--neon-blue: #00f0ff;
+--neon-glow: rgba(255, 0, 255, 0.4);
+--soft-violet: #ff00ff; 
+--card-bg: rgba(25, 5, 45, 0.8);
+--particle-invert: 0; 
+}
+[data-theme="magic"] #tsparticles { filter: hue-rotate(280deg) saturate(200%) brightness(1.2); }
 
-    <style>
-
-        :root {
-  
-            --bg-main: #030305;
-            --sidebar-bg: rgba(3, 3, 5, 0.9);
-            --text-main: #e0e0e0;
-            --text-muted: #888;
-            --text-bold: #fff;
-            --glass-bg: rgba(10, 15, 25, 0.6);
-            --glass-border: rgba(0, 240, 255, 0.15);
-            --neon-blue: #00f0ff;
-            --neon-glow: rgba(0, 240, 255, 0.3);
-            --soft-violet: #8a2be2;
-            --card-bg: rgba(15, 18, 25, 0.8);
-            --particle-invert: 0;
-            --sidebar-width: 260px;
-        }
-
-        [data-theme="light"] {
-       
-            --bg-main: #f0f2f5;
-            --sidebar-bg: rgba(240, 242, 245, 0.95);
-            --text-main: #333;
-            --text-muted: #666;
-            --text-bold: #111;
-            --glass-bg: rgba(255, 255, 255, 0.8);
-            --glass-border: rgba(0, 120, 255, 0.2);
-            --neon-blue: #0066cc;
-            --neon-glow: rgba(0, 102, 204, 0.15);
-            --soft-violet: #6a0dad;
-            --card-bg: rgba(255, 255, 255, 0.9);
-            --particle-invert: 1; 
-        }
-
-        [data-theme="magic"] {
-       
-            --bg-main: #0a0212;
-            --sidebar-bg: rgba(10, 2, 18, 0.95);
-            --text-main: #eaddff;
-            --text-muted: #a48ebd;
-            --text-bold: #ffffff;
-            --glass-bg: rgba(40, 10, 60, 0.5);
-            --glass-border: rgba(255, 0, 255, 0.25);
-            --neon-blue: #00f0ff;
-            --neon-glow: rgba(255, 0, 255, 0.4);
-            --soft-violet: #ff00ff; 
-            --card-bg: rgba(25, 5, 45, 0.8);
-            --particle-invert: 0; 
-        }
-        [data-theme="magic"] #tsparticles { filter: hue-rotate(280deg) saturate(200%) brightness(1.2); }
-
-        [data-theme="neon"] {
-            
-            --bg-main: #010a01;
-            --sidebar-bg: rgba(1, 10, 1, 0.95);
-            --text-main: #d4ffd4;
-            --text-muted: #6b996b;
-            --text-bold: #ffffff;
-            --glass-bg: rgba(10, 30, 10, 0.6);
-            --glass-border: rgba(57, 255, 20, 0.25);
-            --neon-blue: #39ff14; 
-            --neon-glow: rgba(57, 255, 20, 0.4);
-            --soft-violet: #00ffcc; 
-            --card-bg: rgba(5, 20, 5, 0.8);
-            --particle-invert: 0; 
-        }
-        [data-theme="neon"] #tsparticles { filter: hue-rotate(100deg) saturate(250%) brightness(1.1); }
-
-        [data-theme="cyan"] {
-        
-            --bg-main: #000b14;
-            --sidebar-bg: rgba(0, 11, 20, 0.95);
-            --text-main: #e0f7fa;
-            --text-muted: #80c0d0;
-            --text-bold: #ffffff;
-            --glass-bg: rgba(0, 30, 50, 0.6);
-            --glass-border: rgba(0, 255, 255, 0.3);
-            --neon-blue: #00ffff; 
-            --neon-glow: rgba(0, 255, 255, 0.5);
-            --soft-violet: #00aaff; 
-            --card-bg: rgba(0, 20, 40, 0.8);
-            --particle-invert: 0; 
-        }
-        [data-theme="cyan"] #tsparticles { filter: hue-rotate(180deg) saturate(300%) brightness(1.5); }
-
+[data-theme="neon"] {--bg-main: #010a01;--sidebar-bg: rgba(1, 10, 1, 0.95);--text-main: #d4ffd4;--text-muted: #6b996b;--text-bold: #ffffff;
+--glass-bg: rgba(10, 30, 10, 0.6);
+--glass-border: rgba(57, 255, 20, 0.25);--neon-blue: #39ff14; 
+--neon-glow: rgba(57, 255, 20, 0.4);--soft-violet: #00ffcc; --card-bg: rgba(5, 20, 5, 0.8);
+--particle-invert: 0; }
+[data-theme="neon"] #tsparticles { filter: hue-rotate(100deg) saturate(250%) brightness(1.1); }
+[data-theme="cyan"] { --bg-main: #000b14;
+ --sidebar-bg: rgba(0, 11, 20, 0.95);
+ --text-main: #e0f7fa;
+ --text-muted: #80c0d0; --text-bold: #ffffff;
+ --glass-bg: rgba(0, 30, 50, 0.6);
+--glass-border: rgba(0, 255, 255, 0.3);
+ --neon-blue: #00ffff; 
+  --neon-glow: rgba(0, 255, 255, 0.5);
+ --soft-violet: #00aaff; 
+ --card-bg: rgba(0, 20, 40, 0.8);
+--particle-invert: 0; } 
+    [data-theme="cyan"] #tsparticles { filter: hue-rotate(180deg) saturate(300%) brightness(1.5);
         body, html {
-            margin: 0; padding: 0;
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            font-family: 'Courier New', Courier, monospace;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-            transition: background-color 0.5s ease, color 0.5s ease;
-        }
-
-        #boot-screen {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-main); z-index: 9999;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            transition: opacity 0.5s ease-out, background-color 0.5s ease;
-        }
-        .boot-title {
-            color: var(--neon-blue); font-size: 2.2rem; letter-spacing: 4px;
-            text-shadow: 0 0 20px var(--neon-glow);
-            opacity: 0; animation: bootPulse 1.2s forwards 0.2s ease-in-out;
-            font-weight: bold; text-align: center;
-            transition: color 0.5s ease, text-shadow 0.5s ease;
-        }
-        @keyframes bootPulse { 
-            0% { opacity: 0; transform: scale(0.95); filter: blur(4px); } 
-            50% { opacity: 1; transform: scale(1.02); filter: blur(0px); }
-            100% { opacity: 1; transform: scale(1); filter: blur(0px); } 
-        }
-
-        
+margin: 0; padding: 0;background-color: var(--bg-main);
+color: var(--text-main);
+font-family: 'Courier New', Courier, monospace;
+ overflow-x: hidden;
+scroll-behavior: smooth;
+transition: background-color 0.5s ease, color 0.5s ease;
+ }
+#boot-screen {
+position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+background: var(--bg-main); z-index: 9999;display: flex; flex-direction: column; justify-content: center; align-items: center;
+transition: opacity 0.5s ease-out, background-color 0.5s ease;
+ }
+.boot-title {
+color: var(--neon-blue); font-size: 2.2rem; letter-spacing: 4px;
+text-shadow: 0 0 20px var(--neon-glow);
+opacity: 0; animation: bootPulse 1.2s forwards 0.2s ease-in-out;font-weight: bold; text-align: center;transition: color 0.5s ease, text-shadow 0.5s ease;
+}
+@keyframes bootPulse { 0% { opacity: 0; transform: scale(0.95); filter: blur(4px); } 
+50% { opacity: 1; transform: scale(1.02); filter: blur(0px); }
+100% { opacity: 1; transform: scale(1); filter: blur(0px); }  } 
         #tsparticles {
-            position: fixed; top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: -1;
-            filter: invert(var(--particle-invert));
-            transition: filter 0.5s ease, transform 2s ease-out;
-            transform: scale(1.1);
-        }
-        #tsparticles.stabilized {
-            transform: scale(1);
+        position: fixed; top: 0; left: 0;
+         width: 100%; height: 100%;
+        z-index: -1;
+        filter: invert(var(--particle-invert));
+        transition: filter 0.5s ease, transform 2s ease-out;
+        transform: scale(1.1);}
+                                    #tsparticles.stabilized {transform: scale(1);
         }
 
         
@@ -164,29 +128,25 @@
         .mobile-menu-btn { display: none; }
 
         
-        .sidebar {
+     .sidebar {
             position: fixed; top: 0; left: 0;
-            width: var(--sidebar-width); height: 100vh;
-            background: var(--sidebar-bg);
-            border-right: 1px solid var(--glass-border);
-            backdrop-filter: blur(15px);
-            display: flex; flex-direction: column;
+       width: var(--sidebar-width); height: 100vh;
+          background: var(--sidebar-bg);
+         border-right: 1px solid var(--glass-border);
+           backdrop-filter: blur(15px);
+       display: flex; flex-direction: column;
             padding-top: 40px; z-index: 100;
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.5s ease, border-color 0.5s ease;
         }
-        .nav-logo {
-            text-align: center; color: var(--neon-blue);
-            font-size: 1.2rem; font-weight: bold;
-            margin-bottom: 50px; text-shadow: 0 0 8px var(--neon-glow);
-            letter-spacing: 5px; opacity: 0.8;
-            transition: color 0.5s ease, text-shadow 0.5s ease;
+       .nav-logo {
+text-align: center; color: var(--neon-blue); font-size: 1.2rem; font-weight: bold; margin-bottom: 50px; text-shadow: 0 0 8px var(--neon-glow);
+    letter-spacing: 5px; opacity: 0.8; transition: color 0.5s ease, text-shadow 0.5s ease;
         }
         .nav-link {
-            padding: 20px 30px; color: var(--text-muted);
-            text-decoration: none; font-size: 1rem;
-            text-transform: uppercase; letter-spacing: 2px;
-            transition: all 0.3s ease; display: flex; align-items: center; gap: 15px;
-            border-left: 3px solid transparent;
+    padding: 20px 30px; color: var(--text-muted);
+     text-decoration: none; font-size: 1rem;
+ text-transform: uppercase; letter-spacing: 2px;
+ transition: all 0.3s ease; display: flex; align-items: center; gap: 15px;border-left: 3px solid transparent;
         }
         .nav-link:hover, .nav-link.active {
             color: var(--text-bold); background: rgba(0, 240, 255, 0.05);
@@ -632,24 +592,24 @@
 
         function initCounters() {
             const counters = document.querySelectorAll('.stat-num');
-            const observer = new IntersectionObserver(entries => {
+ const observer = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const target = +entry.target.getAttribute('data-target');
-                        let count = 0;
+         if (entry.isIntersecting) {
+         const target = +entry.target.getAttribute('data-target');
+       let count = 0;
                         const updateCount = setInterval(() => {
                             count += Math.ceil(target / 20);
-                            if(count >= target) { 
-                                entry.target.innerText = target + (target === 100 ? '%' : '+'); 
-                                clearInterval(updateCount); 
+          if(count >= target) { 
+              entry.target.innerText = target + (target === 100 ? '%' : '+');
+    clearInterval(updateCount); 
                             } else { entry.target.innerText = count; }
                         }, 50);
                         observer.unobserve(entry.target);
                     }
                 });
             }, { threshold: 0.5 });
-            counters.forEach(counter => observer.observe(counter));
+ counters.forEach(counter => observer.observe(counter));
         }
-    </script>
+ </script>
 </body>
 </html>
